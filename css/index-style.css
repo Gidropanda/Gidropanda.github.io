@@ -1,0 +1,254 @@
+* {
+	margin: 0; padding: 0; position: relative; box-sizing: border-box;
+}
+
+body {
+	background: #000;
+	height: 100vh;
+	font-family: 'Neucha', cursive;
+	font-size: 1.3rem;
+	font-weight: 300;
+	color: #fff;
+	overflow: hidden;
+}
+
+.hide {
+	display: none;
+} /* Дефолтное окно */
+.window {
+		position: absolute;
+    width: 100vh;
+    height: 100vw;
+		-webkit-transform: rotate(90deg);
+		        transform: rotate(90deg);
+		top: calc(50vh - 50vw);
+		left: calc(50vw - 50vh);
+    -webkit-perspective: 1px;
+            perspective: 1px;
+    overflow: scroll;
+  }
+.window::after {
+		content:'';
+    display: block;
+    height: 48%;
+  }
+   /*                      Задаём расположение слайдера в форме матрицы. Так же задаём цвета и сноску                        */
+  .window-2 {
+    background: -webkit-linear-gradient(bottom, #e7c197, #cd8d48);
+    background: linear-gradient(to top, #e7c197, #cd8d48);
+    -webkit-transform:
+      matrix3d(
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,               
+        0, 0, 0, -1
+      )
+      translateZ(-2px) 
+			translateY(100%);
+            transform:
+      matrix3d(
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, -1
+      )
+      translateZ(-2px) 
+			translateY(100%);
+	height: 50%;
+  }
+.window-1 {
+	background: -webkit-linear-gradient(#e7c197, #cd8d48);
+	background: linear-gradient(#e7c197, #cd8d48);
+	display: block;
+	height: 50%;
+}
+ /* Блок фигура с надписью */
+figure {
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	background: #fff;
+	overflow: hidden;
+	-webkit-transition: 1s linear;
+	transition: 1s linear;
+	transition: 1s linear;
+}
+:not(:checked) + figure {
+	-webkit-animation: hideme 1s linear forwards;
+	        animation: hideme 1s linear forwards;
+}
+:checked + figure {
+	-webkit-animation: showme 1s linear forwards;
+	        animation: showme 1s linear forwards;
+}
+figure > video,
+figure > img {
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	-webkit-transform: translateX(-50%);
+	        transform: translateX(-50%);
+	min-width: 100vw;
+	width: auto;
+	min-height: 100vh;
+	height: auto;
+}
+
+figure > figcaption {
+	background: rgba(0,0,0,.4);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	padding: 2rem;
+	-webkit-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+	border-radius: 3px;
+	border: 1px solid rgba(255,255,255,.5);
+	text-align: center;
+	z-index: 1;
+	pointer-events: none;
+}
+h2 {
+	font-size: inherit;
+	font-weight: 300;
+	text-align: center;
+}
+h2 span {
+	display: block;
+	font-size: 200%;
+	letter-spacing: 3px;
+	font-variant: small-caps;
+}
+p {
+	background: rgba(0,0,0,.4);
+	text-align: center;
+	font-size: 1rem;
+	letter-spacing: 1px;
+	padding: 5px 0;
+}
+a {
+	text-decoration: none;
+	color: tomato;
+	pointer-events: initial;
+	display: block;
+	margin-top: 1rem;
+}
+a:hover {color: #000;}
+/* Прописываем подпись "Исп колесо для прк" */
+.control {
+	position: absolute;
+	right: 1vh;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	        transform: translateY(-50%);
+}
+label {
+	display: block;
+	width: 2rem;
+	height: 2rem;
+	border: .2rem solid rgba(255,255,255,.45);
+	border-radius: 50%;
+	margin: 1vw 0;
+	-webkit-transition: .25s;
+	transition: .25s;
+}
+#uno:checked ~ .control [for='uno'],
+#dos:checked ~ .control [for='dos'],
+#tres:checked ~ .control [for='tres'],
+#cuatro:checked ~ .control [for='cuatro'] {
+	border-width: .75rem;
+}
+figure:nth-of-type(2) .window-1 {
+	background: 
+	-webkit-linear-gradient(bottom, #b3c471, #faf2da);
+	background: 
+	linear-gradient(to top, #b3c471, #faf2da);
+}
+figure:nth-of-type(2) .window-2 {
+	background:  
+	-webkit-linear-gradient(#b3c471, #faf2da);
+	background:  
+	linear-gradient(#b3c471, #faf2da);
+}
+figure:nth-of-type(3) .window-1 {
+	background:		 
+	-webkit-linear-gradient(#976c01, #f7b500);
+	background:		 
+	linear-gradient(#976c01, #f7b500);
+}
+figure:nth-of-type(3) .window-2 {
+	background: 		 
+	-webkit-linear-gradient(#f7b500, #976c01);
+	background: 		 
+	linear-gradient(#f7b500, #976c01);
+}
+figure:nth-of-type(4) .window-1 {
+	background: 		 
+	-webkit-linear-gradient(bottom, #ff6300, #a22600);
+	background: 		 
+	linear-gradient(to top, #ff6300, #a22600);
+}
+figure:nth-of-type(4) .window-2 {
+	background:  		 
+	-webkit-linear-gradient(#ff6300, #a22600);
+	background:  		 
+	linear-gradient(#ff6300, #a22600);
+}
+@-webkit-keyframes showme {
+	0% {
+		top: -100vh;
+		left: -100vw;
+	}
+	0.1% {
+		left: 100vw;
+		top: 100vh;
+		z-index: 1;
+	}
+	100% {
+		left: 0vw;
+		top: 0vh;
+	}
+}
+@keyframes showme {
+	0% {
+		top: -100vh;
+		left: -100vw;
+	}
+	0.1% {
+		left: 100vw;
+		top: 100vh;
+		z-index: 1;
+	}
+	100% {
+		left: 0vw;
+		top: 0vh;
+	}
+}
+@-webkit-keyframes hideme {
+	0% {
+		top: 0vh;
+		left: 0vw;
+	}
+	99.9% {
+		top: -100vh;
+		left: -100vw
+	}
+	100% {
+		left: 100vw;
+		top: 100vh;		
+	}
+}
+@keyframes hideme {
+	0% {
+		top: 0vh;
+		left: 0vw;
+	}
+	99.9% {
+		top: -100vh;
+		left: -100vw
+	}
+	100% {
+		left: 100vw;
+		top: 100vh;		
+	}
+}
